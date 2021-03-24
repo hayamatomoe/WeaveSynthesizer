@@ -29,7 +29,7 @@ class Wav(object):
         t -= torch.min(t)
         t /= torch.max(t)*scale + (1.0 - scale)/2
         return t
-    def plot(self, twill= False, wd=1024, smooth=True, norm=True, aspect=1.):
+    def plot(self, twill= False, wd=1024, smooth=False, norm=True, aspect=1.):
         t = self.val(wd=wd, norm=norm,smooth=smooth)
         if twill:
             t = self.twill()
