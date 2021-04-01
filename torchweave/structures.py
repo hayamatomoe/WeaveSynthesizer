@@ -233,7 +233,7 @@ class Tensor(object):
     def zeros(self):
         t = torch.zeros(self.tensor.shape, dtype=torch.bool, device='cuda')
         return Tensor(t)
-    def plot(self, wd=None, aspect=1.0, save=False, color=None, sum=False, name=None):
+    def plot(self, wd=None, aspect=1.0, save=False, color=None, sum=False, name=None, bmp=False):
         t = self.reshape(wd)
         if color != None:
             t = self.colorize(t, color=color)
@@ -264,7 +264,10 @@ class Tensor(object):
                     img = Image.fromarray(lay.astype(np.bool))
                 else:
                     img = Image.fromarray(lay.astype(np.uint8))
-                img.save('img/' + timeStamp + str(i) + '.png')
+                if bmp:
+                    img.save('img/' + timeStamp + str(i) + '.bmp')
+                else:
+                    img.save('img/' + timeStamp + str(i) + '.png')
                 print(timeStamp)        
     def diag(self, wd, n=2):
         a = torch.ones([wd])
